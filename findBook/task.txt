@@ -1,0 +1,18 @@
+2. Find the cheapest book
+
+books = [
+    {
+        ‘name’: ‘Lord of the rings’,
+        ‘price’: 700
+    },
+    {
+        ‘name’: ‘Harry Potter’,
+        ‘price’: 1300
+    },
+    {
+        ‘name’: ‘Fluent Python’,
+        ‘price’: 650
+    }
+]
+
+Your script should return: `The cheapest book is ‘Fluent Python’. It costs 650 grn.`

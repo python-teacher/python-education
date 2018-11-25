@@ -1,0 +1,1 @@
+Write a Python program to get the current time in Python.

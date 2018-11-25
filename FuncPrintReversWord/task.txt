@@ -1,0 +1,7 @@
+Write a function which prints a sentense in a reverse order.
+Input example:
+
+This is a test sentense
+
+Output example:
+esnetnes tset a si sihT
