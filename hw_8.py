@@ -4,3 +4,5 @@ def create_dict(N):
 
 
 print(create_dict(20))
+print(create_dict(40))
+print(create_dict(100))
