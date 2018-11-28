@@ -34,4 +34,4 @@ books = [
     },
 ]
 book = min(books, key=lambda x: x['price'])
-print("The cheapest book is {name}. It costs {price} grn".format(name=book['name'], price=book['price']))
+print("The cheapest book is {}. It costs {} grn".format(book['name'], book['price']))
