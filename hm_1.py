@@ -14,7 +14,7 @@ result = 6+1+1+0+9+1+2+3+4+6+1+2 = 36
 
 def sum_str(n):
     sum_line = sum(int(i) for i in str(n))
-    return ("Suma line {n} = {sum_line}".format(n=n, sum_line=sum_line))
+    return ("Suma '{}' = {}".format(n,sum_line))
 
 
 first_example = "931340532415225205491"
