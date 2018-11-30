@@ -13,9 +13,7 @@ result = 6+1+1+0+9+1+2+3+4+6+1+2 = 36
 
 
 def sum_str(n):
-    sum_line = sum(int(i)  for i in str(n) if i.isdigit())
-    return sum_line
-
+    return sum(int(i)  for i in str(n) if i.isdigit())
 
 first_example = "931340532415225205491"
 second_example = "61412325234952344"
