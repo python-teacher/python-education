@@ -1,2 +1,4 @@
 import time
-print(time.ctime())
+def clock():
+    return time.ctime()
+print(clock())
