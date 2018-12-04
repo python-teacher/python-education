@@ -1,4 +1,11 @@
-with open('file/file.txt', 'r') as f:
-    file_read = f.read()
-    max_word = max(file_read.split(), key=len)
-    print(max_word)
+"""
+Write a program to find the longest word in the file.
+"""
+
+
+def long_word():
+    with open('file/file.txt', 'r') as f:
+        print(max(f.read().split(), key=len))
+
+
+long_word()
