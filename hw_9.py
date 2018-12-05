@@ -19,7 +19,7 @@ class Shape:
 
 class Square(Shape):
     def area(self):
-        return pow(self.length, 2)
+        return self.length**2
 
 
 first = Square(3)
