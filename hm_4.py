@@ -2,11 +2,10 @@
 Write a Python program to get the current time in Python.
 """
 
-import time
+import datetime
 
 
 def return_time():
-    return time.ctime()
-
+    return datetime.datetime.now()
 
 print(return_time())
