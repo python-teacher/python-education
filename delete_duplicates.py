@@ -5,9 +5,8 @@ values with original order reserved.
 """
 
 
-def original_numbers():
-    repeating_values = [12, 24, 35, 24, 88, 120, 155, 88, 120, 155]
-    print(list(set(repeating_values))[::-1])
+def original_numbers(*args):
+    return list(set(args))[::-1]
 
 
-original_numbers()
+print(original_numbers(12, 24, 35, 24, 88, 120, 155, 88, 120, 155))
