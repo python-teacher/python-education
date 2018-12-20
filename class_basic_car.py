@@ -22,22 +22,20 @@ print(car.get_car_type()) # prints Petrol.
 
 
 class Car:
-    def __init__(self, type, model, year, max_speed, ):
-        self.type = type
+    def __init__(self, types, model, year, max_speed, ):
+        self.types = types
         self.model = model
         self.year = year
         self.max_speed = max_speed
 
     def get_car_type(self):
-        return self.type
+        return self.types.title()
 
-    def change_type(self, types):
-        self.type = types
+    def change_type(self, new_types):
+        self.types = new_types
 
 
 car = Car('gas', 'BMW', 2018, 280)
 print(car.get_car_type())  # prints `Gas`
 car.change_type('petrol')
 print(car.get_car_type())  # prints `Petrol`.
-car.change_type('electrical')
-print(car.get_car_type())  # prints `Electrical`.
