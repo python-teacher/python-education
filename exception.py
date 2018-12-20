@@ -8,11 +8,10 @@ class Calculator:
         try:
             print("{} / {} = {}".format(a, b, (a / b)))
         except (ZeroDivisionError, ValueError, TypeError):
-            print("{} / {} = {}".format(a, b, False))
+            print("Invalid type or division by zero")
 
 
-one = Calculator
-one.zero(5, 1)
-one.zero(0, 21)
-one.zero(312, 0)
-one.zero(12, 'bdz1')
+Calculator.zero(10, 100)
+Calculator.zero(100, '100')
+Calculator.zero(50, 'fifty')
+Calculator.zero(0, 100)
