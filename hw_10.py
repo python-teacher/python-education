@@ -1,9 +1,12 @@
-class calc:
+"""
+Define your custom class for exceptions. Show an example how it might be used.
+"""
+
+class Calculator:
     while True:
         try:
             a = int(input('a = '))
             b = int(input('b = '))
-            sum = a / b
-            print(sum)
+            print("{} / {} = {}".format(a,b,(a/b)))
         except (ZeroDivisionError, ValueError):
             print(False)
