@@ -3,15 +3,35 @@ Define your custom class for exceptions. Show an example how it might be used.
 """
 
 
-class Calculator:
-    def zero(a, b):
-        try:
+class Error(Exception):
+    pass
+
+
+class TypeError(Error):
+    pass
+
+
+class ZeroDivisionError(Error):
+    pass
+
+
+def zero(a, b):
+    try:
+        if isinstance(a, str) or isinstance(b, str):
+            raise TypeError
+        elif int(b) == 0:
+            raise ZeroDivisionError
+        else:
             print("{} / {} = {}".format(a, b, (a / b)))
-        except (ZeroDivisionError, ValueError, TypeError):
-            print("Invalid type or division by zero")
+    except TypeError:
+        print('Invalid type')
+    except ZeroDivisionError:
+        print('Division by zero')
 
 
-Calculator.zero(10, 100)
-Calculator.zero(100, '100')
-Calculator.zero(50, 'fifty')
-Calculator.zero(0, 100)
+zero(5, 5)
+zero('5', 5)
+zero(5, '0')
+zero(5, 0)
+zero(0, 1023)
+zero(555, 'budz')
