@@ -7,25 +7,25 @@ class Error(Exception):
     pass
 
 
-class Type(Error):
+class DivisionDifferentTypes(Error):
     pass
 
 
-class ZeroDivision(Error):
+class DivideByZero(Error):
     pass
 
 
 def zero(a, b):
     try:
         if isinstance(a, str) or isinstance(b, str):
-            raise Type
+            raise DivisionDifferentTypes
         elif int(b) == 0:
-            raise ZeroDivision
+            raise DivideByZero
         else:
             print("{} / {} = {}".format(a, b, (a / b)))
-    except Type:
+    except DivisionDifferentTypes:
         print('Invalid type')
-    except ZeroDivision:
+    except DivideByZero:
         print('Division by zero')
 
 
