@@ -7,7 +7,7 @@ class Error(Exception):
     pass
 
 
-class ErrorOtherType(Error):
+class OtherTypeError(Error):
     pass
 
 
@@ -18,12 +18,12 @@ class DivideByZero(Error):
 def zero(a, b):
     try:
         if isinstance(a, str) or isinstance(b, str):
-            raise ErrorOtherType('Invalid type')
+            raise OtherTypeError('Invalid type')
         elif int(b) == 0:
             raise DivideByZero('Division by zero')
         else:
             print("{} / {} = {}".format(a, b, (a / b)))
-    except ErrorOtherType as ddt:
+    except OtherTypeError as ddt:
         print(ddt)
     except DivideByZero as dz:
         print(dz)
