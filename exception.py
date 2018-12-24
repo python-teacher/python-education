@@ -11,7 +11,7 @@ class OtherTypeError(Error):
     pass
 
 
-class DivideByZero(Error):
+class DivideByZeroError(Error):
     pass
 
 
@@ -20,13 +20,13 @@ def zero(a, b):
         if isinstance(a, str) or isinstance(b, str):
             raise OtherTypeError('Invalid type')
         elif int(b) == 0:
-            raise DivideByZero('Division by zero')
+            raise DivideByZeroError('Division by zero')
         else:
             print("{} / {} = {}".format(a, b, (a / b)))
-    except OtherTypeError as ddt:
-        print(ddt)
-    except DivideByZero as dz:
-        print(dz)
+    except OtherTypeError as ote:
+        print(ote)
+    except DivideByZeroError as dze:
+        print(dze)
 
 
 zero(5, 5)
