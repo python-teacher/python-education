@@ -1,0 +1,31 @@
+"""
+This task contains a few parts:
+Write a custom function which returns your name or username.
+Write a decorator which allows access for your user and prints 
+“Permission denied” for other users.
+
+Tips:
+Create get_user_info function which returns your name or username.
+Create decorator which raises Exception if get_user_info returns not 
+your name or username
+Create check_perms function decorated by decorator. This function
+returns Allowed access if user validation is successful.
+"""
+
+
+def get_user_info(f):
+    def wrapper(my_name):
+        if "Sergiy Budz" != my_name:
+            raise ValueError("Access denied")
+        else:
+            return f()
+
+    return wrapper
+
+
+@get_user_info
+def check_perms():
+    return "Access is allowed"
+
+
+print(check_perms("Sergiy Budz"))
