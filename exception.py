@@ -23,10 +23,10 @@ def zero(a, b):
             raise DivideByZeroError('Division by zero')
         else:
             print("{} / {} = {}".format(a, b, (a / b)))
-    except OtherTypeError as ote:
-        print(ote)
-    except DivideByZeroError as dze:
-        print(dze)
+    except OtherTypeError as other_type:
+        print(other_type)
+    except DivideByZeroError as divide_by_zero:
+        print(divide_by_zero)
 
 
 zero(5, 5)
