@@ -19,7 +19,8 @@ class Car:
         self.max_speed = max_speed
 
     def get_car_type(self):
-        return self.types.title()
+        car = "Car"
+        return self.types.title() + car.title()
 
     def change_type(self, new_types):
         self.types = new_types
@@ -40,7 +41,6 @@ class Car:
 
 car = Car('BMW', 2018, 300)
 petrol_car = car.set_car_type('petrol')  # It returns `PetrolCar` instance.
-
 print(petrol_car.get_car_type())
 print(petrol_car.get_model())  # Returns `BMW`
 print(petrol_car.get_year())  # Returns 2018
