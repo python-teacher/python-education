@@ -13,10 +13,10 @@ returns Allowed access if user validation is successful.
 """
 
 
-def decorator(my_name):
-    def wrapper(f):
-        name_list = ['sergiy', 'pavlo']
-        if my_name != name_list:
+def decorator(f):
+    def wrapper(my_name):
+        name_list = ["Sergiy Budz", "Pavlo"]
+        if list(my_name) != name_list:
             raise ValueError("Permission denied")
         else:
             return f()
@@ -24,9 +24,13 @@ def decorator(my_name):
     return wrapper
 
 
-@decorator(["sergiy", "pavlo" ])
+@decorator
 def check_perms():
     return "Access is allowed"
 
 
-print(check_perms)
+def get_user_info(*name):
+    return name
+
+
+print(check_perms(get_user_info("Sergiy Budz", "Pavlo")))
