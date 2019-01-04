@@ -19,12 +19,9 @@ Your code should works under both versions of Python (2.X, 3.X)
 
 
 def concatenation_of_two_numbers():
-    mas_list = (x for x in range(0, 100000000000))
-    new_mas_list = []
-    for i in mas_list:
-        concatenation = str(i) + str(i)
+    list_of_numbers = (x for x in range(0, 100000000000))
+    new_squares_list= (str(i) * 2 for i in list_of_numbers)
+    for concatenation in new_squares_list:
         print(concatenation)
-        new_mas_list.append(concatenation)
-
 
 concatenation_of_two_numbers()
