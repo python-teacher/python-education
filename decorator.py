@@ -13,13 +13,11 @@ returns Allowed access if user validation is successful.
 """
 
 
-def users_name():
-    return ["sergiy", "pavlo"]
 
 
 def decorator(my_name):
     def wrapper(f):
-        if my_name[0] != users_name()[0] or my_name[1] != users_name()[1]:
+        if not my_name:
             raise ValueError("Permission denied")
         else:
             return f()
