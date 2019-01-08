@@ -27,8 +27,7 @@ def z_range(n):
 
 
 def squares_of_numbers():
-    list_of_numbers = (x for x in z_range(100000000000))
-    new_squares_list = (i * i for i in list_of_numbers)
+    new_squares_list = (i * i for i in z_range(100000000000))
     for squared in new_squares_list:
         print(squared)
 
