@@ -26,10 +26,9 @@ def z_range(n):
         i += 1
 
 
-def squares_of_numbers():
-    new_squares_list = (i * i for i in z_range(100000000000))
-    for squared in new_squares_list:
-        print(squared)
+def squares_of_numbers(value):
+    return (i * i for i in z_range(value))
 
 
-squares_of_numbers()
+for square in squares_of_numbers(100000000000):
+    print(square)
