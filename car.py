@@ -13,21 +13,18 @@ gas_car = car.set_car_type('gas')  # It returns `GasCar` instance.
 
 
 class Car:
-    def __init__(self, model, year, max_speed, ):
+    def __init__(self, model, year, max_speed, types=None):
         self.model = model
         self.year = year
         self.max_speed = max_speed
-
-    def get_car_type(self):
-        car = "Car"
-        return self.types.title() + car.title()
-
-    def change_type(self, new_types):
-        self.types = new_types
+        self.types = types
 
     def set_car_type(self, types):
-        self.types = types
-        return self
+        self.types = types.title() + 'Car'
+        return Car(self.model, self.year, self.max_speed, self.types)
+
+    def get_car_type(self):
+        return self.types
 
     def get_model(self):
         return self.model
@@ -41,6 +38,7 @@ class Car:
 
 car = Car('BMW', 2018, 300)
 petrol_car = car.set_car_type('petrol')  # It returns `PetrolCar` instance.
+
 print(petrol_car.get_car_type())
 print(petrol_car.get_model())  # Returns `BMW`
 print(petrol_car.get_year())  # Returns 2018
