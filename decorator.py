@@ -13,13 +13,13 @@ returns Allowed access if user validation is successful.
 """
 
 
-def my_is_name():
+def get_user_info():
     return 'sergiy'
 
 
-def decorator(my_name):
+def decorator(allowed_users):
     def wrapper(f):
-        if my_is_name() not in my_name:
+        if get_user_info() not in allowed_users:
             raise ValueError("Permission denied")
         else:
             return f()
