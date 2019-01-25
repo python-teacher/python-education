@@ -70,3 +70,4 @@ print(petrol_car.__class__)  # <class '__main__.PetrolCar'>
 print(isinstance(petrol_car, PetrolCar))  # True
 print(isinstance(gas_car, GasCar))  # True
 print(isinstance(gas_car, ElectronCar))  # False
+print(isinstance(car, ElectronCar))
