@@ -17,16 +17,17 @@ class Car:
         self.model = model
         self.year = year
         self.max_speed = max_speed
+        self.mapped_classes = \
+            {
+                "petrol": PetrolCar,
+                "gas": GasCar,
+                "electro": ElectronCar
+            }
 
     def set_car_type(self, new_type):
-        mapped_classes = {
-            "petrol": PetrolCar,
-            "gas": GasCar,
-            "electro": ElectronCar
-        }
-        for key, value in mapped_classes.items():
-            if new_type in key:
-                return value(self.model, self.year, self.max_speed)
+        if new_type in self.mapped_classes:
+            return self.mapped_classes[new_type](self.model, self.year,
+                                                 self.max_speed)
 
     def get_model(self):
         return self.model
