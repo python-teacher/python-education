@@ -20,10 +20,10 @@ class Car:
 
     def set_car_type(self, new_type):
         try:
-            return mapped_classes.get(new_type)(self.model, self.year,
-                                                self.max_speed)
-        except Exception:
-            print(False)
+            car_class = mapped_classes.get(new_type)
+            return car_class(self.model, self.year,self.max_speed)
+        except (AttributeError,TypeError):
+            print("Wrong type!")
 
     def get_model(self):
         return self.model
@@ -70,3 +70,5 @@ print(gas_car.__class__)  # <class '__main__.GasCar'>
 print(isinstance(petrol_car, PetrolCar))  # True
 print(isinstance(gas_car, GasCar))  # True
 print(isinstance(gas_car, ElectroCar))  # False
+
+electro = car.set_car_type('elect') # return "Wrong type!"
