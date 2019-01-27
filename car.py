@@ -19,8 +19,11 @@ class Car:
         self.max_speed = max_speed
 
     def set_car_type(self, new_type):
-        return mapped_classes[new_type](self.model, self.year,
-                                        self.max_speed)
+        try:
+            return mapped_classes.get(new_type)(self.model, self.year,
+                                                self.max_speed)
+        except Exception:
+            print(False)
 
     def get_model(self):
         return self.model
