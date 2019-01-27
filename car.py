@@ -18,10 +18,16 @@ class Car:
         self.year = year
         self.max_speed = max_speed
 
+        self.mapped_classes = \
+            {
+                "petrol": PetrolCar,
+                "gas": GasCar,
+                "electro": ElectroCar
+            }
+
     def set_car_type(self, new_type):
-        for cls in self.__class__.__subclasses__():
-            if new_type.title() + 'Car' in cls.__name__:
-                return cls(self.model, self.year, self.max_speed)
+        return self.mapped_classes[new_type](self.model, self.year,
+                                             self.max_speed)
 
     def get_model(self):
         return self.model
