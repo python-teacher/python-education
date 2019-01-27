@@ -18,16 +18,9 @@ class Car:
         self.year = year
         self.max_speed = max_speed
 
-        self.mapped_classes = \
-            {
-                "petrol": PetrolCar,
-                "gas": GasCar,
-                "electro": ElectroCar
-            }
-
     def set_car_type(self, new_type):
-        return self.mapped_classes[new_type](self.model, self.year,
-                                             self.max_speed)
+        return mapped_classes[new_type](self.model, self.year,
+                                        self.max_speed)
 
     def get_model(self):
         return self.model
@@ -60,16 +53,17 @@ class PetrolCar(Car):
         super().__init__(model, year, max_speed)
 
 
+mapped_classes = {"petrol": PetrolCar, "gas": GasCar, "electro": ElectroCar}
+
 car = Car('BMW', 2018, 300)
 petrol_car = car.set_car_type('petrol')  # It returns `PetrolCar` instance.
+print(petrol_car.__class__)  # <class '__main__.PetrolCar'>
 print(petrol_car.get_model())  # Returns `BMW`
 print(petrol_car.get_year())  # Returns 2018
 print(petrol_car.get_max_speed())  # Returns 300
 
 gas_car = car.set_car_type('gas')  # It returns `GasCar` instance.
 print(gas_car.__class__)  # <class '__main__.GasCar'>
-print(petrol_car.__class__)  # <class '__main__.PetrolCar'>
 print(isinstance(petrol_car, PetrolCar))  # True
 print(isinstance(gas_car, GasCar))  # True
 print(isinstance(gas_car, ElectroCar))  # False
-print(isinstance(car, ElectroCar))
