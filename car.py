@@ -22,8 +22,8 @@ class Car:
         try:
             car_class = mapped_classes.get(new_type)
             return car_class(self.model, self.year,self.max_speed)
-        except (AttributeError,TypeError):
-            print("Wrong type!")
+        except TypeError:
+            print("TypeError")
 
     def get_model(self):
         return self.model
@@ -60,6 +60,9 @@ mapped_classes = {"petrol": PetrolCar, "gas": GasCar, "electro": ElectroCar}
 
 car = Car('BMW', 2018, 300)
 petrol_car = car.set_car_type('petrol')  # It returns `PetrolCar` instance.
+
+atribute_error = car.set_car_type('peter') # TypeError
+
 print(petrol_car.__class__)  # <class '__main__.PetrolCar'>
 print(petrol_car.get_model())  # Returns `BMW`
 print(petrol_car.get_year())  # Returns 2018
