@@ -23,7 +23,7 @@ class Car:
             car_class = mapped_classes.get(new_type)
             return car_class(self.model, self.year,self.max_speed)
         except TypeError:
-            print("TypeError")
+            print("Invalid car type")
 
     def get_model(self):
         return self.model
