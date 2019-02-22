@@ -16,8 +16,8 @@ def get_post():
 	print(f'Request data from {request_url}')
 	recent_post = requests.get(request_url).json()
 	for data in recent_post['data']:
-		print(f"Like count post {data['likes']['count']} and comment post {
-		data['comments']['count']}")
+		print(f"Like count post {data['likes']['count']} and comment post "
+			  f"{data['comments']['count']}")
 		print(f'Tags {data["caption"]["text"]}')
 		print(data['images']['standard_resolution']['url'])
 		print()
