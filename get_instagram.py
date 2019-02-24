@@ -1,11 +1,19 @@
 from InstagramAPI import InstagramAPI
 from key import *
+import requests
 
 
-def user():
+def get_user_id(username):
+	request = requests.get(userID + str(username)).json()
+	userid = 0
+	for i in request['users']:
+		userid = int(i['user']['pk'])
+	return userid
+
+
+def user(user_id):
 	api = InstagramAPI(username=user_name, password=password)
 	api.login()
-	user_id = 9755530901  # 
 	followers = api.getTotalFollowers(user_id)
 	followings = api.getTotalFollowings(user_id)
 
@@ -17,4 +25,5 @@ def user():
 
 
 if __name__ == '__main__':
-	user()
+	ID = get_user_id('case_iphone_lviv2019')
+	user(ID)
