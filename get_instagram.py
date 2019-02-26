@@ -8,7 +8,6 @@ def user(username):
 	try:
 		api.searchUsername(username)
 		user_id = api.LastJson["user"]["pk"]
-		print(user_id)
 		followers = api.getTotalFollowers(user_id)
 		followings = api.getTotalFollowings(user_id)
 		print(f'Number of followers: {len(followers)}!')
