@@ -1,4 +1,2 @@
-﻿urlInstagram = "https://www.instagram.com/"
-
-user_name = 'case_iphone_lviv2019'
+﻿user_name = 'case_iphone_lviv2019'
 password = 'игвяеуіе123'
