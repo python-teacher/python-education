@@ -4,12 +4,9 @@ from key import user_name, password
 
 class GetInstagramInfo:
     def __init__(self, username, password):
-	self.username = username
-	self.password = password
 	self.api = InstagramAPI(username=user_name, password=password)
 	self.api.login()
-	self.user_id = self.api.username_id
-
+	
     def get_followers(self, user_id=None):
 	"""Returns list of user's followers."""
 	user_id = user_id or self.api.username_id
