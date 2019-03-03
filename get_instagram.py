@@ -12,14 +12,14 @@ class GetInstagramInfo:
 
 	def get_followers(self, user_id=None):
 		"""Returns list of user's followers."""
-		self.user_id = user_id if user_id is not None else self.user_id
-		followers = self.api.getTotalFollowers(self.user_id)
+		user_id = user_id or self.api.username_id
+		followers = self.api.getTotalFollowers(user_id)
 		return [follower['username'] for follower in followers]
 
 	def get_followings(self, user_id=None):
 		"""Returns list of user's followings."""
-		self.user_id = user_id if user_id is not None else self.user_id
-		followings = self.api.getTotalFollowings(self.user_id)
+		user_id = user_id or self.api.username_id
+		followings = self.api.getTotalFollowings(user_id)
 		return [following['username'] for following in followings]
 
 
