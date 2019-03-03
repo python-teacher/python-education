@@ -16,7 +16,7 @@ class GetInstagramInfo:
 	followers = self.api.getTotalFollowers(user_id)
 	return [follower['username'] for follower in followers]
 
-def get_followings(self, user_id=None):
+    def get_followings(self, user_id=None):
     	"""Returns list of user's followings."""
 	user_id = user_id or self.api.username_id
 	followings = self.api.getTotalFollowings(user_id)
