@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 
 from InstagramAPI import InstagramAPI
 
@@ -30,6 +30,8 @@ class GetInstagramInfo:
 
 
 instagram_info = GetInstagramInfo(user_name, password)
+
+
 def index(request):
 	user = None
 	if request.method == "GET":
@@ -41,6 +43,5 @@ def index(request):
 			user = dict(get_followers=followers, get_followings=followings,
 						name=name)
 		return render(request, "../templates/index.html", context=user)
-
 	else:
 		return render(request, "../templates/index.html")
