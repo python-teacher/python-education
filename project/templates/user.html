@@ -1,0 +1,38 @@
+<br>
+<h3>Username: {{ name }}</h3>
+<div class="row" style="text-align: center">
+    <div class="col-6">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>followers ({{ get_followers|length }})</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in get_followers %}
+                <tr>
+                    <td>{{ i }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-6">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>followings ({{ get_followings|length }})</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in get_followings %}
+                <tr>
+                    <td>{{ i }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
