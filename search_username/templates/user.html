@@ -5,11 +5,11 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>followers ({{ get_followers|length }})</th>
+                <th>followers ({{ list_of_followers|length }})</th>
             </tr>
             </thead>
             <tbody>
-            {% for i in get_followers %}
+            {% for i in list_of_followers %}
                 <tr>
                     <td>{{ i }}</td>
                 </tr>
@@ -22,11 +22,11 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>followings ({{ get_followings|length }})</th>
+                <th>followings ({{ list_of_followings|length }})</th>
             </tr>
             </thead>
             <tbody>
-            {% for i in get_followings %}
+            {% for i in list_of_followings %}
                 <tr>
                     <td>{{ i }}</td>
                 </tr>

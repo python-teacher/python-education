@@ -1,9 +1,6 @@
 from django.shortcuts import render, redirect
-
 from InstagramAPI import InstagramAPI
-
-user_name = 'case_iphone_lviv2019'
-password = 'игвяеуіе123'
+from search_username.settings import password, user_name
 
 
 class GetInstagramInfo:
@@ -40,8 +37,10 @@ def index(request):
 			user_id = instagram_info.get_user_id(name)
 			followers = instagram_info.get_followers(user_id)
 			followings = instagram_info.get_followings(user_id)
-			user = dict(get_followers=followers, get_followings=followings,
-						name=name)
-		return render(request, "../templates/index.html", context=user)
+			user = dict(
+				list_of_followers=followers,
+				list_of_followings=followings,
+				name=name)
+		return render(request, "index.html", context=user)
 	else:
-		return render(request, "../templates/index.html")
+		return render(request, "index.html")
