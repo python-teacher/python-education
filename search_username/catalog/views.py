@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from InstagramAPI import InstagramAPI
+from InstagramAPI.InstagramAPI import InstagramAPI
 from search_username.settings import password, user_name
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -61,7 +61,7 @@ def index(request):
                                     time=str(now))
                 session.add(text)
             session.commit()
-            return render(request, "index.html")
+            return render(request, "created_database.html")
         return render(request, "index.html", context=user)
     else:
         return render(request, "index.html")
