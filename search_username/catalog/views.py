@@ -1,11 +1,16 @@
-from django.shortcuts import render
-from InstagramAPI.InstagramAPI import InstagramAPI
-from search_username.settings import password, user_name
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from .models import SaveDataBase, Base
 import datetime
 import itertools
+
+from .models import SaveDataBase, Base
+
+from django.shortcuts import render
+
+from InstagramAPI.InstagramAPI import InstagramAPI
+
+from search_username.settings import password, user_name
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 engine = create_engine('sqlite:///users.db')
 
@@ -37,16 +42,20 @@ user = None
 
 def index(request):
     if request.method == "GET":
-        name = request.GET.get('name', '')
+        name = request.GET.get('name')
         if name:
-            user_id = instagram_info.get_user_id(name)
-            followers = instagram_info.get_followers(user_id)
-            followings = instagram_info.get_followings(user_id)
-            global user
-            user = dict(
-                list_of_followers=followers,
-                list_of_followings=followings,
-                name=name)
+            try:
+                user_id = instagram_info.get_user_id(name)
+                followers = instagram_info.get_followers(user_id)
+                followings = instagram_info.get_followings(user_id)
+                global user
+                user = dict(
+                    list_of_followers=followers,
+                    list_of_followings=followings,
+                    name=name)
+            except KeyError:
+                return render(request,'no_user.htmlу')
+
         if request.GET.get('save') == '':
             Base.metadata.create_all(engine)
             Session = sessionmaker(bind=engine)
