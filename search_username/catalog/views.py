@@ -1,7 +1,7 @@
 import datetime
 import itertools
 
-from .models import SaveDataBase, Base
+from .models import SaveUsers, Base
 
 from django.shortcuts import render
 
@@ -54,23 +54,24 @@ def index(request):
                     list_of_followings=followings,
                     name=name)
             except KeyError:
-                return render(request,'no_user.htmlу')
+                return render(request, 'no_user.html')
 
         if request.GET.get('save') == '':
-            Base.metadata.create_all(engine)
-            Session = sessionmaker(bind=engine)
-            session = Session()
-            now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            for (followings, followers) in itertools.zip_longest(
-                    user['list_of_followings'],
-                    user['list_of_followers'],
-                    fillvalue=' '):
-                text = SaveDataBase(followings=followings,
-                                    followers=followers,
-                                    time=str(now))
-                session.add(text)
-            session.commit()
-            return render(request, "created_database.html")
+            try:
+                Base.metadata.create_all(engine)
+                Session = sessionmaker(bind=engine)
+                session = Session()
+                now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                for (followings, followers) in itertools.zip_longest(
+                        user['list_of_followings'],
+                        user['list_of_followers'],
+                        fillvalue=' '):
+                    text = SaveUsers(followings=followings,followers=followers,time=str(now))
+                    session.add(text)
+                session.commit()
+                return render(request, "created_database.html")
+            except TypeError:
+                return render(request, 'no_user.html')
         return render(request, "index.html", context=user)
     else:
         return render(request, "index.html")
