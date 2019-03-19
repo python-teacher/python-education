@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 
-class SaveUsers(Base):
+class InstagramUsers(Base):
     __tablename__ = "Instagram"
 
     id = Column(Integer, primary_key=True)

@@ -1,16 +1,14 @@
 import datetime
 import itertools
 
-from .models import SaveUsers, Base
-
 from django.shortcuts import render
-
 from InstagramAPI.InstagramAPI import InstagramAPI
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 from search_username.settings import password, user_name
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from .models import Base, InstagramUsers
 
 engine = create_engine('sqlite:///users.db')
 
@@ -66,7 +64,7 @@ def index(request):
                         user['list_of_followings'],
                         user['list_of_followers'],
                         fillvalue=' '):
-                    text = SaveUsers(followings=followings,followers=followers,time=str(now))
+                    text = InstagramUsers(followings=followings, followers=followers, time=str(now))
                     session.add(text)
                 session.commit()
                 return render(request, "created_database.html")
