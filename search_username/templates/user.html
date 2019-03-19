@@ -1,0 +1,40 @@
+<form class="form" action="" method="get">
+    <button type="submit" class="btn btn-danger" name="save">Save to database</button>
+</form>
+<h3>Username: {{ name }}</h3>
+<div class="row" style="text-align: center">
+    <div class="col-6">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>followers ({{ list_of_followers|length }})</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in list_of_followers %}
+                <tr>
+                    <td>{{ i }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-6">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>followings ({{ list_of_followings|length }})</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in list_of_followings %}
+                <tr>
+                    <td>{{ i }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
