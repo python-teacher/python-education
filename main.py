@@ -61,12 +61,12 @@ class GetInstagramInfo:
     def subscribed(self, new_followers, new_followings):
         session = self.create_database()
         now = self.time_now()
-        for following in new_followings:  # це  в бд людей на яких я підписався недавно
+        for following in new_followings:  # write to database subscribed followings
             if following not in self.database_followings():
                 text = InstagramUsers(followings=following, followers='', status="subscribed", time=str(now))
                 session.add(text)
             session.commit()
-        for b, follower in enumerate(new_followers):  # це в бд людей які підписались на мене  недавно
+        for b, follower in enumerate(new_followers):  # write to database subscribed followers
             if follower not in self.database_follower():
                 text = InstagramUsers(followings='', followers=follower, status="subscribed", time=str(now))
                 session.add(text)
@@ -75,12 +75,12 @@ class GetInstagramInfo:
     def unsubscribed(self, new_followers, new_followings):
         session = self.create_database()
         now = self.time_now()
-        for following_l in self.database_followings():  # це запис в бд людей від яких відписався я недавно
+        for following_l in self.database_followings():  # write to database unsubscribed followings
             if following_l not in new_followings:
                 text = InstagramUsers(followings=following_l, followers='', status="unsubscribed", time=str(now))
                 session.add(text)
             session.commit()
-        for follower_l in self.database_follower():  # це в бд людей які відписались від мене  недавно
+        for follower_l in self.database_follower():  # write to database unsubscribed followers
             if follower_l not in new_followers:
                 text = InstagramUsers(followings='', followers=follower_l, status="unsubscribed", time=str(now))
                 session.add(text)
@@ -92,6 +92,6 @@ if __name__ == '__main__':
     user_id = instagram_info.get_user_id('case_iphone_lviv2019')
     followers = instagram_info.get_followers(user_id)
     followings = instagram_info.get_followings(user_id)
-    # instagram_info.save_db(followers,followings)  # розкоментити для запуску,один раз записати і закоментити
-    instagram_info.subscribed(followers, followings)  # розкоментити після того як бд створено
-    # instagram_info.unsubscribed(followings, followers)  # розкоментити після того як бд створено
+    instagram_info.save_db(followers,followings)  # run once and commented
+    # instagram_info.subscribed(followers, followings)  # to uncomment when bd is created
+    # instagram_info.unsubscribed(followings, followers)  # to uncomment when bd is created
