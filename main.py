@@ -41,6 +41,7 @@ class GetInstagramInfo:
         return datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
 
     def save_db(self, followers, followings):
+        """Written followers and followings user to database"""
         session = self.create_database()
         now = self.time_now()
         for (followings, followers) in itertools.zip_longest(followings, followers, fillvalue=''):
@@ -49,16 +50,19 @@ class GetInstagramInfo:
         session.commit()
 
     def database_followings(self):
+        """Getting all followings of the database"""
         session = self.create_database()
         database_followings = session.query(InstagramUsers.followings).all()
         return [y for x in database_followings for y in x]
 
     def database_follower(self):
+        """Getting all followers of the database"""
         session = self.create_database()
         database_follower = session.query(InstagramUsers.followers).all()
         return [y for x in database_follower for y in x]
 
     def subscribed(self, new_followers, new_followings):
+        """Check whether the current user is in the database.If not, then add(status- subscribed)"""
         session = self.create_database()
         now = self.time_now()
         for following in new_followings:  # write to database subscribed followings
@@ -66,13 +70,14 @@ class GetInstagramInfo:
                 text = InstagramUsers(followings=following, followers='', status="subscribed", time=str(now))
                 session.add(text)
             session.commit()
-        for b, follower in enumerate(new_followers):  # write to database subscribed followers
+        for follower in new_followers:  # write to database subscribed followers
             if follower not in self.database_follower():
                 text = InstagramUsers(followings='', followers=follower, status="subscribed", time=str(now))
                 session.add(text)
             session.commit()
 
     def unsubscribed(self, new_followers, new_followings):
+        """Check whether the current database user is in the current list.If not, then add(status-unsubscribed)"""
         session = self.create_database()
         now = self.time_now()
         for following_l in self.database_followings():  # write to database unsubscribed followings
