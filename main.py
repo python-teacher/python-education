@@ -38,13 +38,16 @@ class GetInstagramInfo:
     def time_now(self):
         return datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
 
+    def object_instagram(self, followings, followers, status, time):
+        text = InstagramUsers(followings=followings, followers=followers, status=status, time=time)
+        self.session.add(text)
+        self.session.commit()
+
     def save_db(self, followers, followings):
         """Written followers and followings user to database"""
         now = self.time_now()
         for (followings, followers) in itertools.zip_longest(followings, followers, fillvalue=''):
-            text = InstagramUsers(followings=followings, followers=followers, status="new", time=str(now))
-            self.session.add(text)
-        self.session.commit()
+            self.object_instagram(followings, followers, 'new', str(now))
 
     def database_followings(self):
         """Getting all followings of the database"""
@@ -61,14 +64,10 @@ class GetInstagramInfo:
         now = self.time_now()
         for following in new_followings:  # write to database subscribed followings
             if following not in self.database_followings():
-                text = InstagramUsers(followings=following, followers='', status="subscribed", time=str(now))
-                self.session.add(text)
-            self.session.commit()
+                self.object_instagram(followings=following, followers='', status="subscribed", time=str(now))
         for follower in new_followers:  # write to database subscribed followers
             if follower not in self.database_follower():
-                text = InstagramUsers(followings='', followers=follower, status="subscribed", time=str(now))
-                self.session.add(text)
-            self.session.commit()
+                self.object_instagram(followings='', followers=follower, status="subscribed", time=str(now))
 
     def unsubscribed(self, new_followers, new_followings):
         """Check whether the current database user is in the current list.If not, then add(status-unsubscribed)"""
@@ -76,24 +75,20 @@ class GetInstagramInfo:
         for following_l in self.database_followings():  # write to database unsubscribed followings
             if len(following_l) >= 1:
                 if following_l not in new_followings:
-                    text = InstagramUsers(followings=following_l, followers='', status="unsubscribed", time=str(now))
-                    self.session.add(text)
-                self.session.commit()
+                    self.object_instagram(followings=following_l, followers='', status="unsubscribed", time=str(now))
         for follower_l in self.database_follower():  # write to database unsubscribed followers
             if len(follower_l) >= 1:
                 if follower_l not in new_followers:
-                    text = InstagramUsers(followings='', followers=follower_l, status="unsubscribed", time=str(now))
-                    self.session.add(text)
-                self.session.commit()
+                    self.object_instagram(followings='', followers=follower_l, status="unsubscribed", time=str(now))
 
     def main(self, followers, followings):
         try:
             session = [x for x in self.session.query(InstagramUsers.status).first()]
             if session[0] == 'new':
-                self.subscribed(followers, followings)  # to uncomment when bd is created
-                self.unsubscribed(followers, followings)  # to uncomment when bd is created
+                self.subscribed(followers, followings)
+                self.unsubscribed(followers, followings)
         except TypeError:
-            self.save_db(followers, followings)  # run once and commented
+            self.save_db(followers, followings)
 
 
 if __name__ == '__main__':
